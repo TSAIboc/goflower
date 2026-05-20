@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 東京・諏訪・松本・上高地・長野 完整行程 v21</title>
+  <style>
+    :root{
+      --bg:#f7f4ee;--card:#fffdf8;--ink:#263238;--muted:#68717a;--line:#e5ded0;
+      --accent:#34675c;--accent2:#b76e3b;--soft:#edf4f1;--warn:#fff2d9;--cream:#fff8ec;
+      --info:#e8f4fb;--success:#eaf7ed;--danger:#fdecea;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+    header{padding:44px 22px 32px;background:linear-gradient(135deg,#eaf4ef 0%,#fffbf0 60%,#fdf0e0 100%);border-bottom:2px solid var(--line)}
+    .wrap{max-width:1140px;margin:auto}
+    h1{margin:0 0 10px;font-size:clamp(26px,4.5vw,44px);line-height:1.15;letter-spacing:-0.5px}
+    .sub{color:var(--muted);font-size:15px;margin-top:6px}
+    .toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+    button,a.btn{border:0;border-radius:999px;padding:9px 15px;background:var(--accent);color:white;text-decoration:none;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:5px;font-size:13px;transition:filter .15s}
+    button.secondary,a.secondary{background:white;color:var(--accent);border:1.5px solid #bdd0c9}
+    button:hover,a.btn:hover{filter:brightness(.93)}
+    main{padding:22px 16px 70px}
+    .grid{display:grid;grid-template-columns:1.4fr .6fr;gap:18px;align-items:start}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.04);margin-bottom:16px}
+    h2{margin:0 0 14px;font-size:22px;letter-spacing:-0.3px}
+    h3{margin:0 0 9px;font-size:17px}
+    .overview{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:16px}
+    @media(max-width:900px){.overview{grid-template-columns:repeat(2,1fr)}}
+    .stat{background:linear-gradient(135deg,#fffdf8,#edf4f1);border:1px solid var(--line);border-radius:18px;padding:15px}
+    .stat .label{color:var(--muted);font-size:12px;margin-bottom:3px}
+    .stat .value{font-size:19px;font-weight:800;color:var(--accent)}
+    .route-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px}
+    .route-step{background:white;border:1px solid var(--line);border-radius:15px;padding:11px;font-size:13px}
+    .route-step b{display:block;color:var(--accent2);margin-bottom:3px;font-size:14px}
+    /* Day cards */
+    .day{position:relative;padding-left:26px}
+    .day::before{content:"";position:absolute;left:8px;top:44px;bottom:20px;width:2px;background:linear-gradient(to bottom,#c8bfaf,#e5ded0)}
+    .date{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:4px}
+    .badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 11px;background:var(--soft);color:var(--accent);font-size:12px;font-weight:700}
+    .dot{width:18px;height:18px;border-radius:50%;background:var(--accent);display:inline-block;margin-left:-26px;flex-shrink:0;box-shadow:0 0 0 5px var(--bg)}
+    .item{border-top:1px dashed var(--line);padding:12px 0}
+    .item:first-of-type{border-top:none}
+    .time-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+    .time{font-weight:800;color:var(--accent2);font-size:16px;min-width:88px;flex-shrink:0}
+    .place{font-weight:700;font-size:15px}
+    .muted{color:var(--muted);font-size:13px;margin-top:3px;line-height:1.6}
+    .actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+    /* Alert boxes */
+    .warn{background:var(--warn);border-left:4px solid #d99a2b;padding:10px 13px;border-radius:12px;margin-top:9px;font-size:13px;line-height:1.6}
+    .info-box{background:var(--info);border-left:4px solid #4da6d9;padding:10px 13px;border-radius:12px;margin-top:9px;font-size:13px}
+    .success-box{background:var(--success);border-left:4px solid #4caf80;padding:10px 13px;border-radius:12px;margin-top:9px;font-size:13px}
+    /* Transport box */
+    .transport-box{background:#fafaf7;border:1px solid var(--line);border-radius:15px;padding:13px;margin-top:9px}
+    .transport-box .t-label{font-weight:700;color:var(--ink);margin-bottom:8px;font-size:13px}
+    .transport-step{display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px dashed #ece7de}
+    .transport-step:last-child{border-bottom:none;padding-bottom:0}
+    .t-icon{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px}
+    .t-jr{background:#e0f0e8;color:#1a5c40}
+    .t-shin{background:#d4edf8;color:#1a4a7a}
+    .t-subway{background:#e3e8f7;color:#2b3fa0}
+    .t-bus{background:#fff0dd;color:#8a4d00}
+    .t-taxi{background:#fde8e8;color:#a02020}
+    .t-walk{background:#f0e8fc;color:#5c2ea0}
+    .t-content{font-size:13px;line-height:1.6;flex:1}
+    .t-content b{color:var(--ink)}
+    /* Hotel box */
+    .hotel-box{background:linear-gradient(135deg,#edf4f1,#fffdf8);border:1px solid #b8d4c5;border-radius:16px;padding:14px;margin-top:10px}
+    .hotel-name{font-weight:800;font-size:15px;color:var(--accent);margin-bottom:3px}
+    .hotel-addr{font-size:12px;color:var(--muted);margin-bottom:9px;line-height:1.6}
+    /* Spot grid */
+    .spot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:11px;margin-top:11px}
+    .spot-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    .spot-card img{width:100%;height:138px;object-fit:cover;display:block}
+    .spot-body{padding:12px}
+    .spot-title{font-weight:800;margin-bottom:3px;font-size:14px}
+    .spot-meta{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+    /* Food */
+    .food-box{background:var(--cream);border:1px solid #f0dbb5;border-radius:17px;padding:14px;margin-top:11px}
+    .food-box h3{font-size:15px;margin-bottom:3px}
+    .food-list{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:9px}
+    .food-item{background:white;border:1px solid #edd9b2;border-radius:14px;padding:9px 13px;display:flex;align-items:center;gap:12px}
+    .food-item-body{flex:1;min-width:0}
+    .food-item-body{flex:1;min-width:0}
+    .food-title{font-weight:800;font-size:13.5px;margin-bottom:1px}
+    .food-type{font-size:11.5px;color:var(--muted);margin-bottom:3px}
+    .food-note{font-size:11px;color:var(--muted);margin:2px 0 3px;line-height:1.5}
+    .food-tag{display:inline-block;background:#fff3e0;color:#935c1a;border-radius:999px;padding:1px 7px;font-size:11px;margin:0 3px 3px 0}
+50%{opacity:1}}
+
+    .tb-row{display:flex;align-items:center;gap:4px;margin-top:3px;flex-wrap:wrap}
+    .tb-stars{color:#e8a020;font-size:11.5px;letter-spacing:.04em}
+    .tb-num{color:#68717a;font-size:11px;font-weight:700}
+    .tb-cnt{color:#9aada5;font-size:10px}
+    .tb-badge{font-size:9px;font-weight:700;padding:1px 5px;border-radius:4px;
+      background:#fff4e0;color:#b86c10;border:1px solid #f0d090;white-space:nowrap}
+    .tb-na{color:#b0b8c0;font-size:10.5px}
+    /* Sidebar */
+    .mapbox{position:sticky;top:14px}
+    iframe{width:100%;height:400px;border:0;border-radius:18px;background:#ddd}
+    .map-btns{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+    .mini{font-size:13px}
+    .filter-note{font-size:13px;color:var(--muted);margin-top:7px}
+    .hidden{display:none}
+    footer{color:var(--muted);text-align:center;padding:28px 12px;border-top:1px solid var(--line);font-size:13px}
+    ul{padding-left:1.3em;margin:7px 0}
+    li{margin-bottom:4px;font-size:14px}
+    /* Reminder card */
+    .remind-item{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}
+    .remind-item:last-child{border-bottom:none}
+    .remind-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+    /* Overview card click */
+    .sog-card{cursor:pointer}
+    .sog-card:hover .sog-date{color:var(--accent1)}
+    /* Timeline table */
+    .tl-wrap{overflow-x:auto;margin:16px 0}
+    .tl-table{min-width:700px;width:100%;border-collapse:collapse;font-size:12px}
+    .tl-table th{background:#34675c;color:#fff;padding:7px 5px;text-align:center;border:1px solid rgba(255,255,255,.15);white-space:nowrap;font-weight:700}
+    .tl-table th.day-col{width:70px;background:#2a5246}
+    .tl-table td{border:1px solid var(--line);padding:6px 5px;vertical-align:top;font-size:11.5px;line-height:1.5;color:var(--ink)}
+    .tl-table td.day-lbl{text-align:center;font-weight:800;font-size:13px;color:var(--accent2);background:linear-gradient(135deg,#fff8f0,#fff);white-space:nowrap}
+    .tl-table td.day-lbl span{display:block;font-size:10px;color:var(--muted);font-weight:400}
+    .tl-table td.highlight{background:#fffbf0}
+    .tl-table td.key{background:#f0f7f4;font-weight:600}
+    .tl-table tr:nth-child(even) td:not(.day-lbl){background:#fafafa}
+    .tl-table .time-pill{display:inline-block;background:var(--accent2);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700;margin-right:2px}
+    @media(max-width:640px){.tl-wrap{margin:8px -4px}}
+
+    /* Schedule table */
+    .sched-wrap{margin-top:6px}
+    .sched-table{width:100%;border-collapse:collapse;font-size:14px}
+    .sched-table thead th{background:#34675c;color:white;padding:8px 12px;text-align:left;font-weight:800}
+    .sched-table thead th:first-child{width:70px;text-align:center}
+    .sched-table tbody tr{border-bottom:1px solid var(--line)}
+    .sched-table tbody tr:last-child{border-bottom:none}
+    .sched-table tbody tr:nth-child(even){background:#faf8f4}
+    .sched-table tbody td{padding:10px 12px;line-height:1.6;color:var(--ink)}
+    .sched-table tbody td.sd{text-align:center;font-weight:800;font-size:15px;color:var(--accent2);white-space:nowrap;background:linear-gradient(135deg,#fff8f0,#fff)}
+    .sched-table tbody td.sd span{display:block;font-size:11px;color:var(--muted);font-weight:400}
+    /* Spot overview grid */
+    .spot-overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:16px 0}
+    .sog-card{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:white;cursor:pointer;transition:transform .15s,box-shadow .15s}
+    .sog-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+    .sog-img-wrap{position:relative;height:80px;overflow:hidden}
+    .sog-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .sog-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-size:28px}
+    .sog-date{font-size:11px;font-weight:800;color:var(--accent2);padding:5px 8px 1px;text-align:center}
+    .sog-title{font-size:11px;color:var(--muted);padding:0 8px 7px;text-align:center;line-height:1.4}
+
+    
+    /* Daily timeline */
+    .tl-wrap{overflow-x:auto;margin-top:14px}
+    .tl-table{width:100%;border-collapse:collapse;font-size:12px;min-width:600px}
+    .tl-table th{background:#34675c;color:white;padding:5px 6px;text-align:center;font-weight:700;font-size:11px}
+    .tl-table td{border:1px solid #ddd8cc;vertical-align:middle;height:34px;padding:0}
+    .tl-date{background:#f0ede6;font-weight:800;font-size:12px;color:#34675c;padding:5px 8px;white-space:nowrap;text-align:center;min-width:48px}
+    .tl-stay{background:#edf4f1;font-size:10px;color:#34675c;padding:3px 6px;text-align:center;font-weight:700;min-width:52px;white-space:nowrap}
+    .tl-bar-wrap{position:relative;height:34px;min-width:400px}
+    .tl-seg{position:absolute;top:4px;bottom:4px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;padding:0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:4px}
+    .cs-move{background:#d47a2e}.cs-sight{background:#34675c}.cs-food{background:#b84030}
+    .cs-hotel{background:#4a6e8a}.cs-flight{background:#6a2a7a}.cs-hike{background:#1b5e20}
+    .cs-zzz{background:#b0a898}
+    /* Alpico */
+    .alpico-box{background:#e8f4ff;border:2px solid #2a6ab5;border-radius:18px;padding:16px;margin-top:12px}
+    .alpico-title{font-size:15px;font-weight:800;color:#1a4a8a;margin-bottom:10px}
+    .alpico-route{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin:8px 0}
+    .a-stop{background:#1a4a8a;color:white;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}
+    .a-arrow{color:#2a6ab5;font-size:16px;font-weight:800}
+    .a-mid{background:white;border:2px solid #2a6ab5;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700;color:#1a4a8a;white-space:nowrap}
+    .a-mode{background:#d4eafb;border-radius:6px;padding:2px 7px;font-size:10px;color:#1a4a8a;font-weight:700;display:inline-block;margin:2px 2px 0 0}
+    .fare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:8px}
+    .fare-card{background:white;border:1px solid #b8d8f5;border-radius:12px;padding:10px}
+    .fare-card .fc-title{font-weight:800;font-size:13px;color:#1a4a8a;margin-bottom:4px}
+    .fare-card .fc-price{font-size:16px;font-weight:800;color:#d47a2e}
+    .fare-card .fc-note{font-size:11px;color:#68717a;margin-top:3px;line-height:1.5}
+
+    @media print{.toolbar,.actions,.mapbox,button,.map-btns{display:none}.grid{display:block}.card{box-shadow:none;break-inside:avoid}body{background:white}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🗾 2026 東京・諏訪・松本・上高地・長野 完整行程</h1>
+    <div class="sub">
+      ✈ 6/21（日）20:25 桃園出發 → 翌日凌晨抵達羽田　｜　🛫 6/28（日）12:30 成田起飛返台
+    </div>
+    <div class="toolbar">
+      <button onclick="filterDays('all')">📋 全部顯示</button>
+      <button class="secondary" onclick="filterDays('tokyo')">🗼 東京段</button>
+      <button class="secondary" onclick="filterDays('nagano')">🏔 長野縣段</button>
+      <button class="secondary" onclick="window.print()">🖨 列印 / PDF</button>
+      <a class="btn secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Hotel%20JAL%20City%20Haneda%20Tokyo%20West%20Wing&destination=Suwa%20Bettei%20Suhaku&travelmode=transit">主要跨城路線</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ─── 總覽 ─── -->
+  <section class="card">
+    <h2>行程總覽</h2>
+    <div class="overview">
+      <div class="stat"><div class="label">天數</div><div class="value">8 天 7 夜</div></div>
+      <div class="stat"><div class="label">航班</div><div class="value">羽田進 / 成田出</div></div>
+      <div class="stat"><div class="label">主要移動</div><div class="value">東京 → 長野 → 東京</div></div>
+      <div class="stat"><div class="label">旅行風格</div><div class="value">湖景・古城・山景・藝術</div></div>
+    </div>
+    <div class="route-summary">
+      <div class="route-step"><b>6/21 日</b>20:25 桃園出發<br>夜間航班 MM860</div>
+      <div class="route-step"><b>6/22 一</b>東京 → 上諏訪<br>諏訪湖・神社・酒藏</div>
+      <div class="route-step"><b>6/23 二</b>諏訪 → 松本<br>松本城・繩手通</div>
+      <div class="route-step"><b>6/24 三</b>上高地一日遊<br>大正池・河童橋</div>
+      <div class="route-step"><b>6/25 四</b>長野・善光寺<br>戶隱神社</div>
+      <div class="route-step"><b>6/26 五</b>長野 → 東京<br>六本木入住</div>
+      <div class="route-step"><b>6/27 六</b>teamLab Borderless<br>麻布台 Hills</div>
+      <div class="route-step"><b>6/28 日</b>成田 12:30 起飛<br>返回桃園</div>
+    </div>
+
+    <!-- 景點縮圖總覽 -->
+    <div class="spot-overview-grid">
+      <div class="sog-card" onclick="document.getElementById('d0621').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/21 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://yakei.jp/photo/pc/tokyotower1st1.jpg" alt="桃園 → 羽田" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#1a2a5a">✈</div>
+        </div>
+        <div class="sog-date">6/21</div>
+        <div class="sog-title">桃園 → 羽田</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0622').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/22 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://www.suwakanko.jp/wp_v2/wp-content/uploads/2023/05/hanabi-2023-2-1024x682.jpg" alt="諏訪湖" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#1e5c8a">🌊</div>
+        </div>
+        <div class="sog-date">6/22</div>
+        <div class="sog-title">諏訪湖</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0623').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/23 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://visitmatsumoto.com/lsc/upfile/spot/0000/1001/1001_1_l.jpg" alt="松本城" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#1a3a1a">🏯</div>
+        </div>
+        <div class="sog-date">6/23</div>
+        <div class="sog-title">松本城</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0624').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/24 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://www.kamikochi.org/tw/wp-content/uploads/2016/07/TaishoPondLateFall.jpg" alt="上高地" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#1b5e20">⛰️</div>
+        </div>
+        <div class="sog-date">6/24</div>
+        <div class="sog-title">上高地</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0625').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/25 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://www.go-nagano.net/hubfs/Imported_Blog_Media/16521_ext_01_0.jpg" alt="長野・戸隱" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#5a2a1a">⛩️</div>
+        </div>
+        <div class="sog-date">6/25</div>
+        <div class="sog-title">長野・戸隱</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0626').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/26 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://yakei.jp/photo/pc/hills1.jpg" alt="東京六本木" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#1a1a3a">🗼</div>
+        </div>
+        <div class="sog-date">6/26</div>
+        <div class="sog-title">東京六本木</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0627').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/27 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://assets.team-lab.com/b5EBo9Uo-OK6SM09ZTkEZQ/89JNH3JuCgHZcGbACeD2vU/width=1200,format=jpeg" alt="teamLab" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#3a1a6a">🎨</div>
+        </div>
+        <div class="sog-date">6/27</div>
+        <div class="sog-title">teamLab</div>
+      </div>
+      <div class="sog-card" onclick="document.getElementById('d0628').scrollIntoView({behavior:'smooth',block:'start'})" title="前往 6/28 詳細行程">
+        <div class="sog-img-wrap">
+          <img src="https://www.azabudai-hills.com/assets/images/og_img.jpg" alt="成田出發" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sog-fallback" style="background:#2a4a1a">✈</div>
+        </div>
+        <div class="sog-date">6/28</div>
+        <div class="sog-title">成田出發</div>
+      </div>
+    </div>
+
+    <div class="sched-wrap">
+      <h3 style="margin:16px 0 10px;font-size:16px;font-weight:800">⏰ 每天時段預估</h3>
+      <div class="tl-wrap">
+      <table class="tl-table">
+        <thead>
+          <tr>
+            <th class="day-col">天</th>
+            <th>早晨<br><small>05–08</small></th>
+            <th>上午<br><small>08–11</small></th>
+            <th>中午<br><small>11–14</small></th>
+            <th>下午<br><small>14–17</small></th>
+            <th>傍晚<br><small>17–20</small></th>
+            <th>夜間<br><small>20+</small></th>
+            <th style="white-space:nowrap">住宿</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="day-lbl">6/21<span>日 出發</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="key"><span class="time-pill">18:00</span>桃園 T2<br><span class="time-pill">20:25</span>起飛 MM860</td>
+            <td class="highlight"><span class="time-pill">+3h20</span>機上<br>翌日 00:45 羽田 T3</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e0e8f8;color:#1a3a6a;border:1px solid #1a3a6a44;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">JAL</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/22<span>一 諏訪</span></td>
+            <td><span class="time-pill">08:00</span>早餐</td>
+            <td class="key"><span class="time-pill">09:00</span>新宿 あずさ出發</td>
+            <td><span class="time-pill">12:00</span>抵上諏訪</td>
+            <td class="highlight">️ 諏訪大社・立石公園・五藏</td>
+            <td><span class="time-pill">17:00</span>check-in</td>
+            <td>諏訪湖夜景</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#fff2e0;color:#b76e3b;border:1px solid #b76e3b44;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">朱白</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/23<span>二 松本</span></td>
+            <td><span class="time-pill">07:30</span>早餐</td>
+            <td class="key"><span class="time-pill">09:30</span>松本城</td>
+            <td class="highlight">繩手通・中町通散策</td>
+            <td>草間彌生美術館</td>
+            <td><span class="time-pill">16:30</span>check-in</td>
+            <td>松本晚餐</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e8f4ee;color:#2a6644;border:1px solid #2a664444;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">Cabin</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/24<span>三 上高地</span></td>
+            <td class="key"><span class="time-pill">05:30</span>起床<br> <span class="time-pill">06:00</span>直通巴士</td>
+            <td class="highlight"><span class="time-pill">08:00</span>大正池・健行開始</td>
+            <td>️ 梓川・河童橋・明神池</td>
+            <td class="key"><span class="time-pill">15:00</span>末班巴士<br>趕不得</td>
+            <td><span class="time-pill">17:00</span>返松本</td>
+            <td></td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e8f4ee;color:#2a6644;border:1px solid #2a664444;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">Cabin</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/25<span>四 長野</span></td>
+            <td><span class="time-pill">07:30</span>早餐</td>
+            <td class="key"><span class="time-pill">10:00</span>善光寺</td>
+            <td><span class="time-pill">13:00</span>巴士→戸隱</td>
+            <td class="highlight">️ 戸隱神社奧社<br>杉木参道</td>
+            <td><span class="time-pill">17:00</span>最終巴士</td>
+            <td><span class="time-pill">18:30</span>晚餐</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e0eff8;color:#1a5080;border:1px solid #1a508044;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">NeXT</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/26<span>五 東京</span></td>
+            <td><span class="time-pill">08:30</span>早餐</td>
+            <td class="key"><span class="time-pill">09:00</span>新幹線 長野→東京</td>
+            <td><span class="time-pill">11:30</span>六本木 check-in</td>
+            <td class="highlight">東京鐵塔・增上寺</td>
+            <td>六本木 Hills City View</td>
+            <td>東京夜景</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e0f0ec;color:#34675c;border:1px solid #34675c44;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">Comfort</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/27<span>六 teamLab</span></td>
+            <td></td>
+            <td class="highlight"><span class="time-pill">09:00</span>麻布台Hills散策</td>
+            <td><span class="time-pill">12:00</span>午餐<br>⚠️ 12:40 入場集合</td>
+            <td class="key"><span class="time-pill">13:00</span>teamLab Borderless</td>
+            <td><span class="time-pill">16:30</span>六本木夜景</td>
+            <td>自由活動</td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#e0f0ec;color:#34675c;border:1px solid #34675c44;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">Comfort</span></td>
+          </tr>
+          <tr>
+            <td class="day-lbl">6/28<span>日 成田</span></td>
+            <td class="key"><span class="time-pill">06:30</span>起床<br> <span class="time-pill">07:30</span>早餐退房</td>
+            <td class="key"><span class="time-pill">08:00</span>成田 Express</td>
+            <td class="highlight"><span class="time-pill">09:00</span>成田機場<br>辦理登機</td>
+            <td class="key"><span class="time-pill">12:30</span>起飛→桃園</td>
+            <td></td>
+            <td></td>
+          
+          <td style="white-space:nowrap;padding:5px;border:1px solid var(--line);text-align:center"><span style="display:inline-block;background:#f0f0f0;color:#888;border:1px solid #88844;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">✈ 機上</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+
+
+    <!-- 全程住宿一覽 橫式 -->
+    <div class="sched-wrap" style="margin-top:16px">
+      <h3 style="margin:0 0 10px;font-size:16px;font-weight:800">🏨 全程住宿一覽</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:9px">
+
+        <div style="background:#fffdf8;border:1px solid #e5ded0;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10.5px;font-weight:700;color:#b76e3b;margin-bottom:3px">6/21 夜 · 第 1 晚</div>
+            <span style="display:inline-block;background:#e0e8f8;color:#1a3a6a;border:1px solid #1a3a6a44;border-radius:8px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">JAL</span>
+          </div>
+          <div style="font-weight:800;font-size:13px;color:#263238;line-height:1.4;margin-bottom:1px">Hotel JAL City Haneda<br>Tokyo West Wing</div>
+          <div style="font-size:11px;color:#5a6370;line-height:1.55;margin-bottom:3px">羽田 T3 計程車 約 10 分 · ¥1,000–1,500</div>
+          <div style="font-size:10.5px;color:#9aada5;margin-bottom:6px">〒144-0041 大田区羽田5-1-1</div>
+          <a style="display:block;text-align:center;font-size:11px;font-weight:700;color:#5a6370;background:#f2f2f0;border:1px solid #ddd8d0;border-radius:8px;padding:4px 10px;text-decoration:none;margin-top:auto" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+JAL+City+Haneda+Tokyo+West+Wing">地圖</a>
+        </div>
+
+        <div style="background:#fffdf8;border:1px solid #e5ded0;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10.5px;font-weight:700;color:#b76e3b;margin-bottom:3px">6/22 夜 · 第 2 晚</div>
+            <span style="display:inline-block;background:#fff2e0;color:#b76e3b;border:1px solid #b76e3b44;border-radius:8px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">朱白</span>
+          </div>
+          <div style="font-weight:800;font-size:13px;color:#263238;line-height:1.4;margin-bottom:1px">諏訪別邸 朱白<br><span style="font-size:11px;font-weight:400;color:#68717a">Suwa Bettei Suhaku</span></div>
+          <div style="font-size:11px;color:#5a6370;line-height:1.55;margin-bottom:3px">上諏訪駅 徒歩約 5 分 · 湖畔立地</div>
+          <div style="font-size:10.5px;color:#9aada5;margin-bottom:6px">〒392-0027 諏訪市湖岸通り3-2-2</div>
+          <a style="display:block;text-align:center;font-size:11px;font-weight:700;color:#5a6370;background:#f2f2f0;border:1px solid #ddd8d0;border-radius:8px;padding:4px 10px;text-decoration:none;margin-top:auto" target="_blank" href="https://www.google.com/maps/search/?api=1&query=諏訪別邸+朱白">地圖</a>
+        </div>
+
+        <div style="background:#fffdf8;border:1px solid #e5ded0;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10.5px;font-weight:700;color:#b76e3b;margin-bottom:3px">6/23–24 夜 · 第 3–4 晚</div>
+            <span style="display:inline-block;background:#e8f4ee;color:#2a6644;border:1px solid #2a664444;border-radius:8px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">Cabin</span>
+          </div>
+          <div style="font-weight:800;font-size:13px;color:#263238;line-height:1.4;margin-bottom:1px">Premier Hotel Cabin<br>Matsumoto</div>
+          <div style="font-size:11px;color:#5a6370;line-height:1.55;margin-bottom:3px">松本駅 徒歩約 3 分 · 6/24 上高地出發極方便</div>
+          <div style="font-size:10.5px;color:#9aada5;margin-bottom:6px">〒390-0874 松本市大手1-2-5</div>
+          <a style="display:block;text-align:center;font-size:11px;font-weight:700;color:#5a6370;background:#f2f2f0;border:1px solid #ddd8d0;border-radius:8px;padding:4px 10px;text-decoration:none;margin-top:auto" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Premier+Hotel+Cabin+Matsumoto">地圖</a>
+        </div>
+
+        <div style="background:#fffdf8;border:1px solid #e5ded0;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10.5px;font-weight:700;color:#b76e3b;margin-bottom:3px">6/25 夜 · 第 5 晚</div>
+            <span style="display:inline-block;background:#e0eff8;color:#1a5080;border:1px solid #1a508044;border-radius:8px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">NeXT</span>
+          </div>
+          <div style="font-weight:800;font-size:13px;color:#263238;line-height:1.4;margin-bottom:1px">Hotel NewNagano NeXT</div>
+          <div style="font-size:11px;color:#5a6370;line-height:1.55;margin-bottom:3px">長野駅 徒歩約 3 分 · 2023 年新開幕</div>
+          <div style="font-size:10.5px;color:#9aada5;margin-bottom:6px">長野市（長野駅前）</div>
+          <a style="display:block;text-align:center;font-size:11px;font-weight:700;color:#5a6370;background:#f2f2f0;border:1px solid #ddd8d0;border-radius:8px;padding:4px 10px;text-decoration:none;margin-top:auto" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+NewNagano+NeXT">地圖</a>
+        </div>
+
+        <div style="background:#fffdf8;border:1px solid #e5ded0;border-radius:16px;padding:13px 14px;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+            <div style="font-size:10.5px;font-weight:700;color:#b76e3b;margin-bottom:3px">6/26–27 夜 · 第 6–7 晚</div>
+            <span style="display:inline-block;background:#e0f0ec;color:#34675c;border:1px solid #34675c44;border-radius:8px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">Comfort</span>
+          </div>
+          <div style="font-weight:800;font-size:13px;color:#263238;line-height:1.4;margin-bottom:1px">Comfort Inn Tokyo<br>Roppongi</div>
+          <div style="font-size:11px;color:#5a6370;line-height:1.55;margin-bottom:3px">六本木駅（日比谷線 4番出口）徒歩約 5 分<br>teamLab・東京鐵塔 步行圈</div>
+          <div style="font-size:10.5px;color:#9aada5;margin-bottom:6px">〒106-0032 港区六本木7-14-4</div>
+          <a style="display:block;text-align:center;font-size:11px;font-weight:700;color:#5a6370;background:#f2f2f0;border:1px solid #ddd8d0;border-radius:8px;padding:4px 10px;text-decoration:none;margin-top:auto" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Comfort+Inn+Tokyo+Roppongi">地圖</a>
+        </div>
+      </div>
+    </div>
+
+
+  </section><!-- /overview card -->
+
+  <div class="grid">
+    <section>
+
+      <!-- ═══════════════════════════════ 6/21 ═══════════════════════════════ -->
+      <article class="card day tokyo" id="d0621">
+        <div class="date"><span class="dot"></span><h2>6/21（日）出發日・夜間航班</h2><span class="badge">✈ 桃園 → 羽田</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">18:00</span><span class="place">🧳 抵達桃園國際機場 T2</span></div>
+          <div class="muted">MM860（樂桃）建議出發前 <b>2.5 小時</b>抵達，辦理 check-in、行李托運、出境審查。T2 往返通道熟悉一下。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">20:25</span><span class="place">🛫 桃園 T2 起飛 ── MM860（樂桃航空）</span></div>
+          <div class="muted">飛行時間約 3 小時 20 分。隨身行李通常限 7kg，請提前確認。建議帶充電線、頸枕，降落前補一下眼膜。</div>
+          <div class="warn">⚠️ <b>出發前確認：</b>MM860 航廈（桃園 T2）、行李限重、網路卡是否已購買。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">翌日 00:45</span><span class="place">🛬 抵達東京羽田機場 國際線 T3</span></div>
+          <div class="muted">日本時間 00:45（台灣時間 23:45）。辦理入境審查 + 領行李約 30～45 分鐘，約 01:30 離開機場。</div>
+          <div class="info-box">💡 入境後順序：入境審查 → 行李轉盤 → 海關 → 換日幣（匯率可接受）→ 搭計程車</div>
+          <div class="actions">
+            <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Haneda+Airport+Terminal+3+International">羽田 T3 地圖</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">約 01:30</span><span class="place">🚕 計程車 → Hotel JAL City Haneda Tokyo West Wing</span></div>
+          <div class="muted">羽田機場 T3 → 飯店約 <b>10 分鐘，¥1,000～¥1,500</b>。深夜抵達直接搭計程車最省力，無需等候巴士班次。</div>
+          <div class="hotel-box">
+            <div class="hotel-name">🏨 Hotel JAL City Haneda Tokyo West Wing</div>
+            <div class="hotel-addr">〒144-0041 東京都大田区羽田5-1-1｜最寄：穴守稲荷駅（京急空港線）徒歩約 8 分</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+JAL+City+Haneda+Tokyo+West+Wing">飯店地圖</a>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Haneda+Airport+Terminal+3&destination=Hotel+JAL+City+Haneda+Tokyo+West+Wing&travelmode=driving">羽田 → 飯店路線</a>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ═══════════════════════════════ 6/22 ═══════════════════════════════ -->
+      <article class="card day nagano" id="d0622">
+        <div class="date"><span class="dot"></span><h2>6/22（一）諏訪市 / 諏訪湖</h2><span class="badge">🏔 長野縣 / 諏訪</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:00</span><span class="place">🍳 飯店早餐 / 退房準備</span></div>
+          <div class="muted">確認 JAL City 是否含早餐；若無，穴守稻荷周邊有便利商店。整理行李，準備出發新宿。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:00</span><span class="place">🚉 退房 → 新宿 → 上諏訪（JR特急）</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 完整交通路線：羽田飯店 → 上諏訪駅</div>
+            <div class="transport-step">
+              <div class="t-icon t-subway">地</div>
+              <div class="t-content"><b>穴守稲荷駅</b>（京急空港線）→ 品川駅（普通 約25分 ¥300）<br>或 飯店搭計程車到 品川駅（約20分 ¥2,000）</div>
+            </div>
+            <div class="transport-step">
+              <div class="t-icon t-jr">JR</div>
+              <div class="t-content"><b>新宿駅</b> 搭乘 <b>特急 あずさ（Azusa）</b> → <b>上諏訪駅</b><br>所要時間 約 <b>2 小時 30 分</b> ｜ 自由席 ¥3,740 / 指定席 +¥530<br>推薦班次：09:00 / 09:30 出発</div>
+            </div>
+          </div>
+          <div class="warn">⚠️ 建議 <a href="https://www.ekinet.jp/" target="_blank" style="color:#b76e3b">えきねっと</a> 提前預約指定席，旺季自由席擁擠。行李大件先托運（ヤマト宅急便）到諏訪別邸。</div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shinjuku+Station&destination=Kamisuwa+Station&travelmode=transit">新宿 → 上諏訪路線</a>
+            <a class="btn secondary" target="_blank" href="https://www.ekinet.jp/">えきねっと預約</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">12:00</span><span class="place">🚉 抵達上諏訪駅 / 午餐</span></div>
+          <div class="muted">先至車站存物（ロッカー，大型 ¥700），輕裝遊覽。上諏訪駅周邊午餐選擇多。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">13:00–17:00</span><span class="place">📍 諏訪觀光推薦景點</span></div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAG_xJQ2SwhiGQQ0j24JhpBbAfkcc08rBSWvpgAU2aix-N66H4cE03MMuhe6fWRvInOQ2xaB5I3FkHqNI0Z2G9HnegkLz12gOson1wU5NOqkH8t07ZJjxejjrFD0g-0aJKIsdplBc2qVEMpt=s680-w680-h510-rw" alt="🌊" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🌊</div>
+              <div class="spot-body">
+                <div class="spot-title">🌅 立石公園（你的名字取景地）</div>
+                <div class="spot-meta">俯瞰諏訪湖全景，電影《你的名字》聖地。傍晚光線最美，可開車或搭計程車上山。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=立石公園+諏訪市">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=立石公園+諏訪湖+あなたの名前">相關文章</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://www.suwakanko.jp/wp_v2/wp-content/uploads/2023/03/6ceff128895b780f9d8ac2e556c167b18d5f0994-thumb-1696x1132-3754-1024x683.jpg" alt="⛩️" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">⛩️</div>
+              <div class="spot-body">
+                <div class="spot-title">⛩️ 諏訪大社（下社秋宮・春宮）</div>
+                <div class="spot-meta">日本最古老神社之一，全日本諏訪神社的總本社。下社兩宮步行約 20 分可串連。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=諏訪大社+下社秋宮">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=諏訪大社+四社+参拝方法">相關文章</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://www.suwakanko.jp/wp_v2/wp-content/uploads/2019/03/1ea9a955ee46bb58f3e92b2d7c43f0ba-1-1024x682.jpg" alt="🍶" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🍶</div>
+              <div class="spot-body">
+                <div class="spot-title">🍶 上諏訪五藏試飲巡禮</div>
+                <div class="spot-meta">上諏訪駅徒歩圈内に 5 蔵集中。真澄・麗人・舞姫・横笛・本金。入場無料，試飲各自付費。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=宮坂醸造+真澄+諏訪">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=上諏訪+五蔵+酒蔵+巡り">相關文章</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHhNwkpRSag9cqv06PelD3EA701fRZhWKoQ0peWGCLYw70_D97yjKgPNKkfno7cYHEmoK6gRN6BGXwArEeiCNJAvkg4upAIMIAqoNj1kf3CsdJ1etMBYqllLyTxnOO4JQVV9No6=w540-h312-n-k-no" alt="🚲" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🚲</div>
+              <div class="spot-body">
+                <div class="spot-title">🚲 諏訪湖環湖自行車</div>
+                <div class="spot-meta">湖周 約 16km，上諏訪駅附近可租自行車（¥1,000/日），初夏爽快。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=諏訪湖+レンタサイクル">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-box">
+            <h3>🍽️ 諏訪必吃 / 名物 / 小吃</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">うなぎ 小林（Unagi Kobayashi）</div>
+<div class="tb-row"><span class="tb-stars">★★★★☆</span><span class="tb-num">3.78</span><span class="tb-cnt">(597件)</span><span class="tb-badge">Tabelog 100 鰻</span></div>
+                <div class="food-type">🐟 諏訪湖名物鰻魚飯</div>
+                <span class="food-tag">諏訪名物</span><span class="food-tag">午餐</span>
+                <div class="food-note">諏訪は鰻の産地。ひつまぶし約 ¥2,800。人気店なので開店前に到着推奨。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=うなぎ小林+諏訪市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">くらすわ（Clasuwa）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.47</span><span class="tb-cnt">(265件)</span></div>
+                <div class="food-type">🌊 湖景餐廳 / 甜點 / 伴手禮</div>
+                <span class="food-tag">湖景</span><span class="food-tag">甜點</span>
+                <div class="food-note">信州食材料理＋蘋果甜點，窓から諏訪湖一望。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=くらすわ+諏訪市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">そば処 みわたり</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.42</span></div>
+                <div class="food-type">🍜 手打信州蕎麥麵</div>
+                <span class="food-tag">在地名店</span>
+                <div class="food-note">上諏訪の隠れ家的名店。もりそば ¥900 左右。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=蕎麦+みわたり+諏訪市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">桔梗屋 信玄餅</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.38</span></div>
+                <div class="food-type">🍡 信玄餅 / 伴手禮甜點</div>
+                <span class="food-tag">伴手禮</span>
+                <div class="food-note">山梨名物，諏訪周辺でも購入可。黄な粉+黒蜜が絶品。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=桔梗屋+諏訪" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">湖畔 みたらし団子</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍢 御手洗糰子 / 散步小吃</div>
+                <span class="food-tag">小吃</span>
+                <div class="food-note">諏訪湖畔を歩きながら食べられる。五平餅もおすすめ。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=みたらし団子+上諏訪" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">天ぷら そば処 本陣</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.31</span></div>
+                <div class="food-type">🍜 天ぷら蕎麥 / 晚餐</div>
+                <span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=天ぷらそば+本陣+諏訪" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">17:00</span><span class="place">🏨 入住 諏訪別邸 朱白</span></div>
+          <div class="hotel-box">
+            <div class="hotel-name">🏨 諏訪別邸 朱白（Suwa Bettei Suhaku）</div>
+            <div class="hotel-addr">〒392-0027 長野県諏訪市湖岸通り3丁目2-2｜上諏訪駅 徒歩約 5 分（湖畔立地）</div>
+            <div class="muted">湖景旅館，晚餐或早餐若有附，請提前確認。部分旅館 check-in 為 15:00。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=諏訪別邸+朱白">飯店地圖</a>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kamisuwa+Station&destination=諏訪別邸+朱白+諏訪市&travelmode=walking">上諏訪駅 → 飯店</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">18:30</span><span class="place">🌆 晚餐 / 諏訪湖畔散步</span></div>
+          <div class="muted">飯店若附晚餐則直接享用。傍晚諏訪湖面倒映夕陽，景色極美。くらすわ有晚餐，或至駅前居酒屋嘗試在地地酒。</div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/23 ═══════════════════════════════ -->
+      <article class="card day nagano" id="d0623">
+        <div class="date"><span class="dot"></span><h2>6/23（二）松本城 / 舊市街</h2><span class="badge">🏯 長野縣 / 松本</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">07:30</span><span class="place">🍳 早餐 / 退房</span></div>
+          <div class="muted">享用諏訪別邸早餐（若附），或至上諏訪駅附近咖啡店。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:30</span><span class="place">🚉 上諏訪 → 松本（JR）</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 交通路線：上諏訪 → 松本</div>
+            <div class="transport-step">
+              <div class="t-icon t-jr">JR</div>
+              <div class="t-content"><b>上諏訪駅</b> → <b>松本駅</b>（JR 中央本線）<br>特急 あずさ 約 <b>40 分</b> ¥1,690（指定）｜普通列車 約 55 分 ¥660<br>推薦 08:30 / 09:00 班次</div>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kamisuwa+Station&destination=Matsumoto+Station&travelmode=transit">上諏訪 → 松本路線</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:30</span><span class="place">📦 松本駅 行李寄存</span></div>
+          <div class="muted">松本駅東口・西口均有コインロッカー。大型 ¥700。先輕裝去松本城，下午 check-in 再領回。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">10:00–15:30</span><span class="place">📍 推薦景點</span></div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://visitmatsumoto.com/lsc/upfile/spot/0000/1001/1001_3_l.jpg" alt="🏯" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🏯</div>
+              <div class="spot-body">
+                <div class="spot-title">🏯 松本城（國寶天守閣）</div>
+                <div class="spot-meta">日本唯一平城国宝，烏黑天守倒映護城河，非常壯觀。開放 08:30，建議 10:00 前到避開排隊。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Matsumoto+Castle">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=松本城+混雑+攻略+2026">相關文章</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://visitmatsumoto.com/lsc/upfile/spot/0000/1083/1083_1_l.jpg" alt="🐸" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🐸</div>
+              <div class="spot-body">
+                <div class="spot-title">🐸 繩手通商店街</div>
+                <div class="spot-meta">松本城旁古風商店街，以青蛙為吉祥物，小吃、雜貨、咖啡聚集，適合午後逛街。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nawate+Street+Matsumoto">Google Map</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://visitmatsumoto.com/lsc/upfile/spot/0000/1082/1082_1_l.jpg" alt="🏛️" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🏛️</div>
+              <div class="spot-body">
+                <div class="spot-title">🏛️ 中町通（白壁土藏）</div>
+                <div class="spot-meta">江戶土藏造り保存街區，咖啡廳・工藝品・雜貨，打卡美拍熱門地。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nakamachi+Street+Matsumoto">Google Map</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://visitmatsumoto.com/lsc/upfile/spot/0000/1003/1003_1_l.jpg" alt="🎨" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🎨</div>
+              <div class="spot-body">
+                <div class="spot-title">🎨 松本市美術館・草間彌生</div>
+                <div class="spot-meta">草間彌生的故鄉。館外大型南瓜裝置藝術可免費拍照，入館 ¥410 值得。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=松本市美術館+草間彌生">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-box">
+            <h3>🍽️ 松本必吃 / 名物 / 甜點 / 宵夜</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">おきな堂（Okinado）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.68</span><span class="tb-cnt">(815件)</span></div>
+                <div class="food-type">☕ 昭和復古純喫茶・咖哩</div>
+                <span class="food-tag">必訪名店</span><span class="food-tag">昭和風</span>
+                <div class="food-note">松本老舗純喫茶，牛乳コーヒー＋オムライス超人気。排隊也值得，開店前到。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=おきな堂+松本市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">小木曽製粉所 松本駅前店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.34</span><span class="tb-cnt">(386件)</span></div>
+                <div class="food-type">🍜 信州蕎麥麵 ¥750 起</div>
+                <span class="food-tag">平價</span><span class="food-tag">蕎麥麵</span>
+                <div class="food-note">松本駅直近，セルフ蕎麦で安くて美味しい。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=小木曽製粉所+松本駅前" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">たい焼き ふるさと</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.56</span></div>
+                <div class="food-type">🐟 繩手通名物鯛魚燒</div>
+                <span class="food-tag">散步小吃</span>
+                <div class="food-note">繩手通の定番。外皮パリパリ，約 ¥180。現做現烤。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=たい焼きふるさと+松本" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">栞日（Sioribi）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.51</span></div>
+                <div class="food-type">📚 咖啡書店 / 輕食 / 下午茶</div>
+                <span class="food-tag">氣氛佳</span><span class="food-tag">咖啡</span>
+                <div class="food-note">松本最有品味的書店兼咖啡廳，下午茶休憩首選。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=栞日+matsumoto" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">女鳥羽そば（Metoba Soba）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.54</span></div>
+                <div class="food-type">🍜 中町通附近蕎麥名店</div>
+                <span class="food-tag">午餐推薦</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=女鳥羽そば+松本" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">翁（Okina）蕎麥麵</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.47</span></div>
+                <div class="food-type">🍜 手打蕎麥 / 老舗</div>
+                <span class="food-tag">老舗</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=翁+蕎麦+松本市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">鶴の茶房 和菓子</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.43</span></div>
+                <div class="food-type">🍡 和菓子 / 甜點 / 抹茶</div>
+                <span class="food-tag">甜點</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=和菓子+鶴の茶房+松本" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">居酒屋 うなぎ の 川勢</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.32</span></div>
+                <div class="food-type">🍻 居酒屋 / 宵夜 / 晚餐</div>
+                <span class="food-tag">宵夜</span><span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=居酒屋+松本市+宵夜" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">16:30</span><span class="place">🏨 入住松本飯店</span></div>
+          <div class="hotel-box">
+            <div class="hotel-name">🏨 Premier Hotel Cabin Matsumoto（推薦）</div>
+            <div class="hotel-addr">〒390-0874 長野県松本市大手1-2-5｜松本駅 徒歩約 3 分</div>
+            <div class="muted">松本駅至近，翌日搭上高地巴士非常方便。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Premier+Hotel+Cabin+Matsumoto">飯店地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">19:00</span><span class="place">🌙 晚餐 / 中町通散步</span></div>
+          <div class="muted">晚間中町通燈光柔和，適合飯後散步。早點休息，明天 05:30 要起床。</div>
+          <div class="warn">⏰ <b>重要：</b>今晚確認上高地巴士預約、出發時間。建議 23:00 前就寢，準備 05:30 起床。</div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/24 ═══════════════════════════════ -->
+      <article class="card day nagano" id="d0624">
+        <div class="date"><span class="dot"></span><h2>6/24（三）上高地一日遊</h2><span class="badge">⛰️ 自然景觀 / 預約巴士</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">05:30</span><span class="place">⏰ 起床 / 出發準備</span></div>
+          <div class="muted">準備輕便背包：行動糧食（前晚 コンビニ 購入）、雨衣、薄外套（上高地 6 月高原氣溫約 15℃）、防曬、行動水壺。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">06:00</span><span class="place">🚌 松本駅 BT → 上高地（Alpico 巴士）</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 交通路線：松本 → 上高地</div>
+            <div class="transport-step">
+              <div class="t-icon t-bus">巴</div>
+              <div class="t-content"><b>松本駅バスターミナル</b> 搭 <b>Alpico 上高地線</b> → <b>上高地 BT</b><br>直達便 約 <b>1 小時 30 分</b>｜往復 ¥4,700<br>または 松本駅 → 新島々駅（電車 30 分）→ 上高地（バス 60 分）</div>
+            </div>
+          </div>
+          <div class="warn">⚠️ <b>超重要：</b>6 月旺季巴士額滿非常快，請提前在 <a href="https://visit-nagano.alpico.co.jp/zh-hant/" target="_blank" style="color:#b76e3b">Alpico 官網</a>預約！末班車約 <b>17:00</b>，務必留意回程時間！</div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://visit-nagano.alpico.co.jp/zh-hant/timetable/matsumoto-kamikochi">Alpico 時刻表預約</a>
+            <a class="btn secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Matsumoto+Station&destination=Kamikochi+Bus+Terminal&travelmode=transit">松本 → 上高地路線</a>
+          </div>
+
+<div class="alpico-box">
+  <div class="alpico-title">🚌 松本 ↔ 上高地 交通指南（Alpico 官方資訊 2026）</div>
+
+  <p style="font-size:13px;margin:0 0 10px">
+    <strong>⚠️ 2025 年起，往返上高地巴士全面採預約制</strong>（含當日券，先到先得仍需網路預約）。<br>
+    預約網站：<a href="https://japanbusonline.com/zh-tw" target="_blank" style="color:#1a4a8a;font-weight:700">JapanBusOnline.com（繁體中文）</a>｜可提前 1 個月預訂
+  </p>
+
+  <div style="font-weight:800;font-size:13px;color:#1a4a8a;margin-bottom:6px">路線 A：直達巴士（國家公園線）</div>
+  <div class="alpico-route">
+    <div class="a-stop">松本巴士總站</div>
+    <div class="a-arrow">──直達──▶</div>
+    <div class="a-stop">上高地BT</div>
+  </div>
+  <div class="fare-grid">
+    <div class="fare-card">
+      <div class="fc-title">🚌 05:30 出發班次</div>
+      <div class="fc-price">¥5,000／大人</div>
+      <div class="fc-note">最早班次，搶手！建議提前預約<br>通常很快售完，越早越好</div>
+    </div>
+    <div class="fare-card">
+      <div class="fc-title">🚌 10:15 出發班次</div>
+      <div class="fc-price">¥4,600／大人</div>
+      <div class="fc-note">第二班直達；行程建議搭 05:30<br>抵達時間較晚（約 12:30 至上高地）</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:#68717a;margin-top:6px">⚠️ 回程無直達巴士，須走「路線 B」轉乘</div>
+
+  <div style="font-weight:800;font-size:13px;color:#1a4a8a;margin:12px 0 6px">路線 B：非直達（電車 + 巴士）去/回程通用</div>
+  <div class="alpico-route">
+    <div class="a-stop">松本駅</div>
+    <div class="a-arrow">▶</div>
+    <div class="a-mid"><span class="a-mode">上高地線電車</span> 約30分 ¥710</div>
+    <div class="a-arrow">▶</div>
+    <div class="a-stop">新島島駅</div>
+    <div class="a-arrow">▶</div>
+    <div class="a-mid"><span class="a-mode">巴士</span> 約60分 ¥3,100</div>
+    <div class="a-arrow">▶</div>
+    <div class="a-stop">上高地BT</div>
+  </div>
+  <div class="fare-grid">
+    <div class="fare-card">
+      <div class="fc-title">🚃 松本駅→新島島（電車）</div>
+      <div class="fc-price">¥710</div>
+      <div class="fc-note">⚠️ <strong>現金限定！IC卡（SUICA）不可用</strong><br>在松本站自動售票機購買<br>搭乘月台：7號月台（上高地線）</div>
+    </div>
+    <div class="fare-card">
+      <div class="fc-title">🚌 新島島→上高地（巴士）</div>
+      <div class="fc-price">¥3,100</div>
+      <div class="fc-note">需在 JapanBusOnline 預約<br>若選「松本站」為目的地，票價含電車<br>回程也走此路線，同樣需預約</div>
+    </div>
+  </div>
+
+  <div style="font-size:12px;color:#263238;background:white;border-radius:10px;padding:10px;margin-top:10px">
+    <b>🎫 注意事項</b>
+    <ul style="margin:6px 0;padding-left:1.2em">
+      <li>回程從上高地當日也可在上高地 BT 售票窗口購票（06:00–17:30），但旺季易售完</li>
+      <li>若在大正池站下車，持回程票可免費搭乘大正池→上高地 BT 的後段巴士</li>
+      <li>巴士無廁所；熊噴劑須裝袋放行李箱，不可帶入車廂</li>
+      <li>運行期間：<b>4/17（四）～11/15（六）</b>，冬季停駛</li>
+    </ul>
+  </div>
+  <div class="actions" style="margin-top:10px">
+    <a class="btn" target="_blank" href="https://japanbusonline.com/zh-tw/CourseSearch/11600350001">直達巴士預約</a>
+    <a class="btn secondary" target="_blank" href="https://japanbusonline.com/zh-tw/CourseSearch/11600370001">新島島→上高地預約</a>
+    <a class="btn secondary" target="_blank" href="https://visit-nagano.alpico.co.jp/zh-hant/timetable/matsumoto-kamikochi">Alpico 官方時刻表</a>
+  </div>
+</div>
+
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">07:30–08:00</span><span class="place">🌊 抵達上高地 大正池下車</span></div>
+          <div class="muted">建議在「<b>大正池</b>」站下車（不在終點 BT），從大正池出發，沿梓川健行至河童橋（約 4km，2 小時），這是上高地最經典的路線。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:00–14:30</span><span class="place">🥾 健行景點</span></div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://www.kamikochi.org/tw/wp-content/uploads/2016/07/jaSiteTaishoPondArticle_cover5.webp" alt="🌊" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🌊</div>
+              <div class="spot-body">
+                <div class="spot-title">🌊 大正池（Taisho Pond）</div>
+                <div class="spot-meta">死木倒映翡翠色湖面，晨霧中如夢似幻。是上高地最具代表性的景色，早晨最美。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Taisho+Pond+Kamikochi">Google Map</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://resources.matcha-jp.com/resize/720x2000/2025/09/04-243319.webp" alt="🌉" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🌉</div>
+              <div class="spot-body">
+                <div class="spot-title">🌉 河童橋（Kappa Bridge）</div>
+                <div class="spot-meta">上高地象徵，清澈梓川與穗高連峰絕景。餐廳、商店、補給點集中。建議 10:00 前抵達。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kappa+Bridge+Kamikochi">Google Map</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://www.kamikochi.org/tw/wp-content/uploads/2016/07/TaishoPondLateFall.jpg" alt="⛩️" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">⛩️</div>
+              <div class="spot-body">
+                <div class="spot-title">⛩️ 明神池（Myojin Pond）</div>
+                <div class="spot-meta">體力充沛可從河童橋多走 1 小時到明神池。神祕幽靜的神社池，嘉門次小屋就在旁邊。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Myojin+Pond+Kamikochi">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-box">
+            <h3>🍽️ 上高地必吃 / 山中補給</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">五千尺ホテル（Gosenjaku Hotel）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.62</span><span class="tb-cnt">(145件)</span></div>
+                <div class="food-type">🍎 蘋果派（必吃！）/ 河童橋旁</div>
+                <span class="food-tag">上高地名物</span><span class="food-tag">甜點</span>
+                <div class="food-note">上高地で一番有名なスイーツ「アップルパイ」¥600。露台席で穗高連峰を眺めながら食べる体験！</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=五千尺ホテル+上高地" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">嘉門次小屋（Kamonji Goya）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.74</span><span class="tb-cnt">(319件)</span></div>
+                <div class="food-type">🐟 炭火烤岩魚 / 明神池旁</div>
+                <span class="food-tag">山中名物</span>
+                <div class="food-note">明神池のすぐ横の山小屋。炭火で焼く岩魚は絶品 ¥1,200，独特の雰囲気最高。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=嘉門次小屋+上高地" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">Gosenjaku Kitchen</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.45</span></div>
+                <div class="food-type">🍛 咖哩飯 / 輕食 / 飲料</div>
+                <span class="food-tag">補給點</span>
+                <div class="food-note">河童橋旁，健行途中快速補充能量的好選擇。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Gosenjaku+Kitchen+Kamikochi" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">上高地 ソフトクリーム</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍦 松本牛乳軟冰 / ¥500</div>
+                <span class="food-tag">甜點</span>
+                <div class="food-note">河童橋周辺の売店，松本牛乳を使った濃厚ソフトクリーム。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=上高地+バスターミナル+売店" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">14:30</span><span class="place">🚌 趕往巴士站 / 搭車返松本</span></div>
+          <div class="muted">在上高地 BT 排隊等候巴士，旺季建議 14:00 前往排隊。帶走垃圾，不留痕跡。</div>
+          <div class="warn">⚠️ <b>末班巴士必須確認！</b>大約 17:00 前後末班，建議搭 15:00 或 16:00 班次，避免塞車。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">17:00</span><span class="place">🏨 返抵松本（繼續住 6/23 飯店）</span></div>
+          <div class="muted">回到松本後洗澡休息，至駅周辺吃晚餐。明天早上出發長野。</div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/25 ═══════════════════════════════ -->
+      <article class="card day nagano" id="d0625">
+        <div class="date"><span class="dot"></span><h2>6/25（四）長野市 / 善光寺 / 戶隱</h2><span class="badge">⛩️ 長野市</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">07:30</span><span class="place">🍳 早餐 / 退房</span></div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:00</span><span class="place">🚉 松本 → 長野（JR）</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 交通路線：松本 → 長野</div>
+            <div class="transport-step">
+              <div class="t-icon t-jr">JR</div>
+              <div class="t-content"><b>松本駅</b> → <b>長野駅</b>（JR 篠ノ井線 + 信越本線）<br>普通 約 <b>1 時間 20 分</b> ¥1,170 ｜ 特急しなの 約 50 分 ¥2,860<br>乗換：篠ノ井駅（同ホーム乗換が多い）</div>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Matsumoto+Station&destination=Nagano+Station&travelmode=transit">松本 → 長野路線</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:30</span><span class="place">🏨 Check-in / 置物 Hotel NewNagano NeXT</span></div>
+          <div class="hotel-box">
+            <div class="hotel-name">🏨 Hotel NewNagano NeXT</div>
+            <div class="hotel-addr">長野市，長野駅 徒歩約 3 分｜2023 年前後開幕，設施新穎</div>
+            <div class="muted">早上可能無法 check-in，先存行李，輕裝出發善光寺。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+NewNagano+NeXT">飯店地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">10:00–12:30</span><span class="place">⛩️ 善光寺 / 表參道散步</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 長野駅 → 善光寺</div>
+            <div class="transport-step">
+              <div class="t-icon t-bus">巴</div>
+              <div class="t-content">長野駅前 BT → 善光寺前（川中島バス）約 10 分 ¥150<br>或 徒歩 約 20 分（商店街も楽しめる）</div>
+            </div>
+          </div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://db.go-nagano.net/files/topics/19342_ext_02_0.jpg" alt="🛕" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🛕</div>
+              <div class="spot-body">
+                <div class="spot-title">🛕 善光寺</div>
+                <div class="spot-meta">約 1400 年歷史，無宗派，任何人都可參拜。山門・本堂・御戒壇めぐり（お戒壇巡り ¥500）必體驗。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Zenkoji+Temple+Nagano">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=善光寺+お戒壇巡り+注意">相關文章</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://db.go-nagano.net/files/topics/19342_ext_02_0.jpg" alt="🛍️" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🛍️</div>
+              <div class="spot-body">
+                <div class="spot-title">🛍️ 善光寺表參道</div>
+                <div class="spot-meta">御燒（おやき）・七味唐辛子・栗お菓子・野沢菜漬け，長野伴手禮在此一次買齊。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Zenkoji+Omotesando+Nagano">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="food-box">
+            <h3>🍽️ 善光寺周邊 / 長野名物小吃</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">いろは堂（Irohado）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.51</span></div>
+                <div class="food-type">🥮 御燒（Oyaki）/ 長野名物</div>
+                <span class="food-tag">必吃</span><span class="food-tag">名物</span>
+                <div class="food-note">長野伝統の「おやき」（野菜まん頭），10 種以上の餡，約 ¥200 一個。お土産にも最適。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=いろは堂+長野" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">八幡屋礒五郎 本店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.55</span></div>
+                <div class="food-type">🌶️ 七味唐辛子 / 280 年老店</div>
+                <span class="food-tag">必買伴手禮</span>
+                <div class="food-note">長野土産の代表。缶の七味カスタム調配が人気体験。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=八幡屋礒五郎+長野本店" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">桜井甘精堂 本店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.49</span></div>
+                <div class="food-type">🌰 栗羊羹 / 栗おこわ</div>
+                <span class="food-tag">甜點</span><span class="food-tag">伴手禮</span>
+                <div class="food-note">長野の栗スイーツ老舗。栗おこわ ¥800，早めに売り切れ注意。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=桜井甘精堂+長野" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">竹風堂 長野大門店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.46</span></div>
+                <div class="food-type">🌰 栗しぐれ / 和菓子</div>
+                <span class="food-tag">甜點</span>
+                <div class="food-note">長野を代表する栗菓子専門店。イートインも可。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=竹風堂+長野大門店" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">13:00–17:30</span><span class="place">⛩️ 戶隱神社 / 蕎麥麵聖地</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 長野駅前 → 戶隱（川中島バス）</div>
+            <div class="transport-step">
+              <div class="t-icon t-bus">巴</div>
+              <div class="t-content"><b>長野駅前 BT</b> → <b>戸隠奥社入口</b>（戸隠線 直通）約 <b>1 小時 10 分</b> ¥1,300<br>おすすめ：<b>善光寺・戸隠 1日フリー乗車券</b> ¥2,200（長野駅構内で購入）</div>
+            </div>
+          </div>
+          <div class="warn">⚠️ 戸隠行バスは <b>1 日 4 本程度</b>。<b>17:00 頃の最終バス</b>に乗り遅れると帰れない。必ず時刻表確認！</div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://www.go-nagano.net/hubfs/Imported_Blog_Media/21379_ext_01_0_L.jpg" alt="🌲" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🌲</div>
+              <div class="spot-body">
+                <div class="spot-title">🌲 戶隱神社奧社（杉木參道）</div>
+                <div class="spot-meta">長達 2km 的杉木參道，樹齡逾 400 年巨木林立。奧社步道來回約 1.5 小時，建議穿好走的鞋。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Togakushi+Shrine+Okusha+Nagano">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.google.com/search?q=戸隠神社+奥社+参拝+時間">相關文章</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="food-box">
+            <h3>🍽️ 戶隱蕎麥聖地 / 必吃</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">うずら家（Uzuraya）</div>
+<div class="tb-row"><span class="tb-stars">★★★★☆</span><span class="tb-num">3.76</span><span class="tb-cnt">(1392件)</span><span class="tb-badge">Tabelog 100 蕎麦</span></div>
+                <div class="food-type">🍜 戸隠 No.1 蕎麥麵</div>
+                <span class="food-tag">超人氣</span><span class="food-tag">需排隊</span>
+                <div class="food-note">戸隠で最も有名。開店前から行列必至。ざるそば ¥1,200。<b>11:30 前に到着</b>推奨。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=うずら家+戸隠" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">そばの実（Soba no Mi）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.41</span></div>
+                <div class="food-type">🍜 戸隠そば / 相對好排位</div>
+                <span class="food-tag">替代選擇</span>
+                <div class="food-note">うずら家に断られたらこちら。品質も十分高い。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=そばの実+戸隠" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">戸隠中社周辺 茶屋</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍡 力餅 / 漬物 / 甜點</div>
+                <span class="food-tag">散步小吃</span>
+                <div class="food-note">中社参道沿いの茶屋で力餅やみそ漬を味わう。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=戸隠+中社+茶屋" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">18:30</span><span class="place">🌆 返回長野市 / 晚餐</span></div>
+          <div class="food-box">
+            <h3>🍽️ 長野市區晚餐 / 宵夜</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">権堂アーケード 居酒屋街</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍻 信州地酒・居酒屋・宵夜</div>
+                <span class="food-tag">宵夜</span><span class="food-tag">在地人推薦</span>
+                <div class="food-note">長野駅東口，在地人聚集的居酒屋街，信州の地酒と地元料理が楽しめる。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=権堂アーケード+居酒屋+長野市" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">信州まるごと長野 / 駅ビル</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.28</span></div>
+                <div class="food-type">🛍️ 長野駅內土産・晚食</div>
+                <span class="food-tag">方便</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=信州まるごと長野+長野駅" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">そば処 つるや（Tsuruya）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.36</span></div>
+                <div class="food-type">🍜 長野駅周辺 蕎麥麵</div>
+                <span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=つるや+蕎麦+長野駅" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="time-row"><span class="time">住宿</span><span class="place">🏨 Hotel NewNagano NeXT</span></div>
+          <div class="actions"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+NewNagano+NeXT">飯店地圖</a></div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/26 ═══════════════════════════════ -->
+      <article class="card day tokyo" id="d0626">
+        <div class="date"><span class="dot"></span><h2>6/26（五）長野 → 東京六本木</h2><span class="badge">🗼 東京 / 六本木</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:30</span><span class="place">🍳 早餐 / 退房</span></div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:00</span><span class="place">🚅 北陸新幹線 長野 → 東京</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 完整路線：長野 → 東京 → 六本木</div>
+            <div class="transport-step">
+              <div class="t-icon t-shin">新</div>
+              <div class="t-content"><b>長野駅</b> → <b>東京駅</b>（北陸新幹線）<br>かがやき 約 <b>1 小時 18 分</b> ¥7,810（指定）<br>はくたか 約 1 小時 50 分（途中停車，較便宜）</div>
+            </div>
+            <div class="transport-step">
+              <div class="t-icon t-subway">地</div>
+              <div class="t-content"><b>東京駅</b> → <b>六本木駅</b>（東京メトロ 日比谷線）<br>大手町 乗換 なし ／ 霞ケ関 → 六本木 約 <b>25 分 ¥210</b><br>または 東京駅 → 丸ノ内線 → 霞ケ関 → 日比谷線 六本木</div>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nagano+Station&destination=Tokyo+Station&travelmode=transit">長野 → 東京路線</a>
+            <a class="btn secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Roppongi+Station+Tokyo&travelmode=transit">東京駅 → 六本木</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">11:30</span><span class="place">🏨 Check-in 六本木飯店</span></div>
+          <div class="hotel-box">
+            <div class="hotel-name">🏨 Comfort Inn Tokyo Roppongi（舒適飯店 六本木）</div>
+            <div class="hotel-addr">〒106-0032 東京都港区六本木7-14-4｜六本木駅（日比谷線 4番出口）徒歩約 5 分</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Comfort+Inn+Tokyo+Roppongi">飯店地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">13:00–20:00</span><span class="place">🗼 六本木周邊景點</span></div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://yakei.jp/photo/pc/tokyotower2nd1.jpg" alt="🗼" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🗼</div>
+              <div class="spot-body">
+                <div class="spot-title">🗼 東京鐵塔 / 增上寺</div>
+                <div class="spot-meta">傍晚至夜間最美。增上寺免費，鐵塔 Main Deck ¥1,200。與鐵塔同框必拍角度：芝公園 / 麻布台 Hills。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Tower">Google Map</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="http://art-view.roppongihills.com/common/img/LogoSetW1200H630B.jpg" alt="🌆" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🌆</div>
+              <div class="spot-body">
+                <div class="spot-title">🌆 六本木 Hills Tokyo City View</div>
+                <div class="spot-meta">52 樓室內展望台，天氣好可看富士山。¥1,800。入夜後東京夜景無敵。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Roppongi+Hills+Tokyo+City+View">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="food-box">
+            <h3>🍽️ 六本木必吃 / 名店 / 宵夜</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">AFURI 六本木（阿夫利）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.65</span></div>
+                <div class="food-type">🍜 柚子鹽拉麵 / 名店</div>
+                <span class="food-tag">必吃</span><span class="food-tag">柚子鹽</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=AFURI+Roppongi+Tokyo" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">叙々苑 六本木ヒルズ店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.70</span></div>
+                <div class="food-type">🥩 高級燒肉 / 晚餐</div>
+                <span class="food-tag">燒肉</span><span class="food-tag">高級</span>
+                <div class="food-note">六本木 Hills 焼肉名店，要予約。¥4,000+/人。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=叙々苑+六本木ヒルズ" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">PST Pizza Studio Tamaki</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.46</span><span class="tb-badge">Michelin Bib</span></div>
+                <div class="food-type">🍕 ナポリピザ / 人気店</div>
+                <span class="food-tag">披薩</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=PST+Pizza+Studio+Tamaki+Roppongi" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">一蘭 六本木店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.30</span></div>
+                <div class="food-type">🍜 個人拉麵 / 宵夜 / 深夜</div>
+                <span class="food-tag">宵夜</span><span class="food-tag">深夜OK</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=一蘭+六本木" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">鳥貴族 六本木店</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.27</span></div>
+                <div class="food-type">🍢 串燒居酒屋 / 均一 ¥360</div>
+                <span class="food-tag">宵夜</span><span class="food-tag">平價</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=鳥貴族+六本木" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">Mr. FARMER Roppongi Hills</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.33</span></div>
+                <div class="food-type">🥗 健康食 / 沙拉 / 輕食</div>
+                <span class="food-tag">健康</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mr+FARMER+Roppongi+Hills" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">鉄板焼 ステーキ 六本木</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.38</span></div>
+                <div class="food-type">🥩 和牛鐵板燒 / 晚餐</div>
+                <span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=鉄板焼+ステーキ+六本木" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">麻布十番 商店街</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍡 あんこ玉・たい焼き / 宵夜</div>
+                <span class="food-tag">下町小吃</span>
+                <div class="food-note">六本木から徒歩 10 分。老舗甘味処・小吃多。</div></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=麻布十番+商店街" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/27 ═══════════════════════════════ -->
+      <article class="card day tokyo" id="d0627">
+        <div class="date"><span class="dot"></span><h2>6/27（六）teamLab Borderless</h2><span class="badge">🎨 麻布台 Hills</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:00–11:30</span><span class="place">🥐 早餐 / 麻布台 Hills 散策</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 六本木飯店 → 麻布台 Hills / teamLab</div>
+            <div class="transport-step">
+              <div class="t-icon t-walk">步</div>
+              <div class="t-content"><b>Comfort Inn 六本木</b> → <b>麻布台 Hills</b>（麻布台ヒルズ）<br>徒歩 約 <b>12 分</b>，沿六本木通り往神谷町方向<br>或 六本木駅（日比谷線）→ 神谷町駅 1 駅 ¥180</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">12:00–12:45</span><span class="place">🍽️ teamLab 前午餐</span></div>
+          <div class="food-box">
+            <h3>🍽️ 麻布台 / teamLab 前後美食</h3>
+            <div class="food-list">
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">Arabica Tokyo（% Arabica）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.59</span></div>
+                <div class="food-type">☕ 精品咖啡 / 麻布台 Hills</div>
+                <span class="food-tag">咖啡</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Arabica+Tokyo+Azabudai+Hills" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">Pelican Cafe（ペリカン）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.63</span></div>
+                <div class="food-type">🍞 吐司・三明治 / 輕食</div>
+                <span class="food-tag">輕食</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pelican+Cafe+Azabudai+Hills" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">麻布台 Hills フードホール</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.40</span></div>
+                <div class="food-type">🍱 美食廣場・各式料理</div>
+                <span class="food-tag">方便</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Azabudai+Hills+food+hall+Tokyo" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">鳥丸 やきとり（Torimaru）</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.37</span></div>
+                <div class="food-type">🍢 串燒 / teamLab 後宵夜</div>
+                <span class="food-tag">宵夜</span><span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=鳥丸+やきとり+六本木" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">ハンバーガー 西麻布・六本木</div>
+<div class="tb-row"><span class="tb-na">食べログ未掲載</span></div>
+                <div class="food-type">🍔 精緻漢堡 / 晚餐</div>
+                <span class="food-tag">晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=gourmet+burger+nishiazabu+roppongi" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+              <div class="food-item">
+              <div class="food-item-body"><div class="food-title">ラ・ブラスリー 麻布台 Hills</div>
+<div class="tb-row"><span class="tb-stars">★★★½☆</span><span class="tb-num">3.41</span></div>
+                <div class="food-type">🍷 法式料理 / 晚餐</div>
+                <span class="food-tag">高級晚餐</span></div>
+              <a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=brasserie+azabudai+hills" style="white-space:nowrap;flex-shrink:0;align-self:center;margin:0;min-width:fit-content">地圖</a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">13:00</span><span class="place">🎨 teamLab Borderless 入場（13:00 時段）</span></div>
+          <div class="spot-grid">
+            <div class="spot-card">
+              <img src="https://assets.team-lab.com/b5EBo9Uo-OK6SM09ZTkEZQ/Yt5eET5oZzm6FBicauQUSY/width=1200,format=jpeg" alt="🎨" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🎨</div>
+              <div class="spot-body">
+                <div class="spot-title">🎨 teamLab Borderless</div>
+                <div class="spot-meta">沉浸式數位藝術空間，建議預留 <b>2.5～3 小時</b>。白色系服裝視覺效果最好！地點：Azabudai Hills Garden Plaza B B1 地下。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=teamLab+Borderless+Azabudai+Hills">Google Map</a>
+                  <a class="btn secondary" target="_blank" href="https://www.borderless.teamlab.art/tw/">官方訂票</a>
+                </div>
+              </div>
+            </div>
+            <div class="spot-card">
+              <img src="https://yakei.jp/photo/pc/hills1.jpg" alt="🏢" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:138px;object-fit:cover;display:block"><div class="spot-img-fallback" style="display:none;width:100%;height:138px;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a4a3a,#4a7a5a)">🏢</div>
+              <div class="spot-body">
+                <div class="spot-title">🏢 麻布台 Hills（Azabudai Hills）</div>
+                <div class="spot-meta">2023 年底開幕，東京最新複合設施。頂樓花園、精品店、多樣餐廳，可與 teamLab 搭配遊覽。</div>
+                <div class="actions">
+                  <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Azabudai+Hills+Tokyo">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="warn">⏰ <b>重要：</b>13:00 入場票 QR Code 請提前截圖存於手機相簿（離線可開）。建議 <b>12:40</b> 前到場排隊，入場時會有人員掃碼。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">16:30–21:00</span><span class="place">🌃 六本木夜景 / 東京鐵塔最後夜晚</span></div>
+          <div class="muted">teamLab 後傍晚返回六本木，去東京鐵塔拍日落與夜景（<b>日落約 19:00</b>），或六本木 Hills 展望台，或麻布十番散步吃甜點。最後一個完整的東京之夜，好好記錄。</div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════ 6/28 ═══════════════════════════════ -->
+      <article class="card day tokyo" id="d0628">
+        <div class="date"><span class="dot"></span><h2>6/28（日）成田機場 → 桃園</h2><span class="badge">✈ 返程 / 12:30 起飛</span></div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">06:30</span><span class="place">⏰ 起床 / 整理行李</span></div>
+          <div class="muted">確認護照、行李、手機備電，確認回程航班資訊。把所有充電器、雨傘確認裝進行李。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">07:30</span><span class="place">🍳 早餐 / 退房</span></div>
+          <div class="muted">飯店快速早餐或 FamilyMart 解決。早點退房省心。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">08:00</span><span class="place">🚅 出發 六本木 → 成田機場</span></div>
+          <div class="transport-box">
+            <div class="t-label">📍 選擇路線：六本木 → 成田機場（二擇一）</div>
+            <div class="transport-step">
+              <div class="t-icon t-subway">地</div>
+              <div class="t-content"><b>【推薦・行李方便】</b> 六本木（日比谷線）→ 日比谷駅 徒歩 → 有楽町駅（JR）→ 東京駅 → <b>N'EX</b> → 成田空港<br>N'EX 約 <b>1 時間</b> ¥3,070｜大件行李可放置，班次毎時出発</div>
+            </div>
+            <div class="transport-step">
+              <div class="t-icon t-bus">巴</div>
+              <div class="t-content"><b>【不轉乘・輕鬆】</b> 六本木ヒルズ前 → <b>リムジンバス</b> → 成田空港<br>約 1 時間 30 分 ¥3,200｜直達，不用轉乘，適合行李多</div>
+            </div>
+          </div>
+          <div class="warn">⚠️ <b>超重要：12:30 起飛，請務必 09:00～09:30 前抵達成田！</b>確認搭乘航廈（樂桃通常 T2）。建議 08:00 出發。</div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Comfort+Inn+Tokyo+Roppongi&destination=Narita+Airport&travelmode=transit">六本木 → 成田路線</a>
+            <a class="btn secondary" target="_blank" href="https://www.jreast.co.jp/en/multi/nex/">N'EX 時刻表</a>
+            <a class="btn secondary" target="_blank" href="https://www.limousinebus.co.jp/en/">利木津巴士</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">09:00–09:30</span><span class="place">✅ 抵達成田機場</span></div>
+          <div class="muted">辦理 check-in、行李托運、出境審查。成田免稅區可買最後伴手禮：神奇寶貝中心、迪士尼商店、日本化妝品、糖果餅乾等。</div>
+        </div>
+
+        <div class="item">
+          <div class="time-row"><span class="time">12:30</span><span class="place">🛫 東京成田 → 桃園 出發</span></div>
+          <div class="success-box">🎉 8 天 7 夜行程圓滿完成！東京 · 諏訪 · 松本 · 上高地 · 長野，一路順風 ✈🙏</div>
+        </div>
+      </article>
+
+      <!-- ─── 交通總整理 ─── -->
+      <article class="card">
+        <h2>🚆 完整交通路線總整理</h2>
+        <ul>
+          <li><b>羽田入境（深夜）：</b>計程車 10 分 ¥1,000～1,500 到 JAL City Hotel，最省力。</li>
+          <li><b>羽田飯店 → 新宿（6/22）：</b>穴守稻荷→品川（京急），再轉 JR 山手線→新宿，或搭直達利木津巴士。</li>
+          <li><b>新宿 → 上諏訪：</b>JR 特急あずさ 2.5 小時。えきねっと提前訂指定席！</li>
+          <li><b>上諏訪 → 松本：</b>JR 中央本線，特急 40 分 / 普通 55 分。</li>
+          <li><b>上高地（6/24）：</b>松本駅 BT → Alpico 巴士往復 ¥4,700。旺季提前網路預約，末班 ~17:00！</li>
+          <li><b>松本 → 長野：</b>JR 篠ノ井線，普通 1.5 小時 / 特急しなの 50 分。篠ノ井乗換注意。</li>
+          <li><b>長野 → 東京：</b>北陸新幹線 かがやき 最快 1 小時 18 分，行李多選新幹線最方便。</li>
+          <li><b>東京市區：</b>Suica 加值卡最便利，六本木は日比谷線，teamLab は神谷町駅（日比谷線 1 站）。</li>
+          <li><b>六本木 → 成田（6/28）：</b>12:30 起飛，09:00 前到場。N'EX 大件行李方便，利木津巴士免轉乘。</li>
+        </ul>
+      </article>
+
+    </section><!-- /left column -->
+
+    <!-- ─── 右側邊欄 ─── -->
+    <aside class="mapbox">
+
+      <div class="card">
+        <h2>🗺 地圖總覽</h2>
+        <iframe id="mapFrame" loading="lazy" src="https://www.google.com/maps?q=Nagano+Tokyo+Kamikochi+Japan&output=embed"></iframe>
+        <div class="map-btns">
+          <button onclick="setMap('https://www.google.com/maps?q=Suwa+Lake+Nagano&output=embed')">諏訪湖</button>
+          <button onclick="setMap('https://www.google.com/maps?q=Matsumoto+Castle+Japan&output=embed')">松本城</button>
+          <button onclick="setMap('https://www.google.com/maps?q=Kamikochi+Kappa+Bridge&output=embed')">上高地</button>
+          <button onclick="setMap('https://www.google.com/maps?q=Togakushi+Shrine+Nagano&output=embed')">戶隱</button>
+          <button onclick="setMap('https://www.google.com/maps?q=Zenkoji+Temple+Nagano&output=embed')">善光寺</button>
+          <button onclick="setMap('https://www.google.com/maps?q=teamLab+Borderless+Azabudai+Hills&output=embed')">teamLab</button>
+          <button onclick="setMap('https://www.google.com/maps?q=Tokyo+Tower+Japan&output=embed')">東京鐵塔</button>
+        </div>
+        <p class="filter-note">點擊按鈕切換地圖；各景點美食按鈕開啟 Google Maps。</p>
+      </div>
+
+      <!-- 住宿清單 -->
+      <div class="card">
+        <h3>🏨 全程住宿清單</h3>
+        <ul class="mini">
+          <li><b>6/21 夜</b> Hotel JAL City Haneda Tokyo West Wing<br><span style="color:#68717a">羽田 T3 計程車 10 分</span>
+            <div><a class="btn secondary" style="margin-top:5px;font-size:11px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+JAL+City+Haneda+Tokyo+West+Wing">地圖</a></div>
+          </li>
+          <li style="margin-top:8px"><b>6/22 夜</b> 諏訪別邸 朱白<br><span style="color:#68717a">〒392-0027 長野県諏訪市湖岸通り3丁目2-2</span>
+            <div><a class="btn secondary" style="margin-top:5px;font-size:11px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=諏訪別邸+朱白">地圖</a></div>
+          </li>
+          <li style="margin-top:8px"><b>6/23–6/24 夜</b> Premier Hotel Cabin Matsumoto<br><span style="color:#68717a">〒390-0874 松本市大手1-2-5</span>
+            <div><a class="btn secondary" style="margin-top:5px;font-size:11px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Premier+Hotel+Cabin+Matsumoto">地圖</a></div>
+          </li>
+          <li style="margin-top:8px"><b>6/25 夜</b> Hotel NewNagano NeXT<br><span style="color:#68717a">長野駅 徒歩 3 分</span>
+            <div><a class="btn secondary" style="margin-top:5px;font-size:11px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+NewNagano+NeXT">地圖</a></div>
+          </li>
+          <li style="margin-top:8px"><b>6/26–6/27 夜</b> Comfort Inn Tokyo Roppongi<br><span style="color:#68717a">〒106-0032 港区六本木7-14-4</span>
+            <div><a class="btn secondary" style="margin-top:5px;font-size:11px" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Comfort+Inn+Tokyo+Roppongi">地圖</a></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 重要時間提醒 -->
+      <div class="card">
+        <h3>⏰ 重要時間提醒</h3>
+        <div class="remind-item">
+          <div class="remind-icon">✈</div>
+          <div><b>6/21 18:00</b> 抵達桃園 T2，20:25 起飛（MM860）</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">🛬</div>
+          <div><b>6/22 翌日 00:45</b> 羽田 T3 入境（日本時間）</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">🚅</div>
+          <div><b>6/22 09:00 前</b> 新宿站搭特急あずさ → 上諏訪（建議えきねっと預約指定席）</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">⛰️</div>
+          <div><b>6/24 05:30</b> 起床！松本 06:00 出發上高地巴士，末班約 17:00</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">⛩️</div>
+          <div><b>6/25 戸隠巴士</b>：1 日 4 本，<b>最終バス約 17:00</b>，務必留意！</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">🎨</div>
+          <div><b>6/27 13:00</b> teamLab Borderless 入場，12:40 前到場掃碼</div>
+        </div>
+        <div class="remind-item">
+          <div class="remind-icon">✈</div>
+          <div><b>6/28 12:30</b> 成田起飛，<b>09:00 前必須抵達機場</b>（08:00 出發六本木）</div>
+        </div>
+      </div>
+
+      <!-- 出發前 checklist -->
+      <div class="card">
+        <h3>✅ 出發前確認清單</h3>
+        <ul class="mini">
+          <li>☐ MM860 航班確認（桃園 T2，20:25 出發）</li>
+          <li>☐ えきねっと 特急あずさ 指定席預約</li>
+          <li>☐ Alpico 上高地巴士 預約（往復）</li>
+          <li>☐ teamLab 13:00 入場票券 QR Code</li>
+          <li>☐ 日本網路卡 / Pocket WiFi 啟用確認</li>
+          <li>☐ 諏訪別邸 check-in 時間確認</li>
+          <li>☐ 戸隠バス時刻表下載至手機</li>
+          <li>☐ 成田機場航廈確認（樂桃 通常 T2）</li>
+          <li>☐ Suica / ICOCA 交通卡加值</li>
+          <li>☐ 行李寄送（ヤマト宅急便）是否需要</li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<footer>
+  行程資料依目前規劃整理。交通班次、營業時間、票券狀態請以各官方網站及 Google Maps 當日查詢為準。<br>
+  製作日期：2026 ／ 旅行愉快 🗾🌸
+</footer>
+
+<script>
+  function setMap(src){ document.getElementById('mapFrame').src = src; }
+  function filterDays(type){
+    document.querySelectorAll('.day').forEach(el=>{
+      el.classList.toggle('hidden', !(type==='all' || el.classList.contains(type)));
+    });
+    document.querySelectorAll('button').forEach(b=>{
+      b.style.fontWeight = '';
+    });
+  }
+</script>
+
+
+</body>
+</html>
